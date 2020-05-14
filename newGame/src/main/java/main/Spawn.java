@@ -8,12 +8,14 @@ package main;
 public class Spawn {
     private Handler handler;
     private Health health;
+    private final SpriteSheet ss;
     
     private int scoreNew = 0;
     
-    public  Spawn(Handler handler, Health health){
+    public  Spawn(Handler handler, Health health, SpriteSheet ss){
         this.handler = handler;
         this.health = health;
+        this.ss = ss;
     }
     
     public void tick(){
@@ -22,24 +24,10 @@ public class Spawn {
         if(scoreNew >= 500){
             scoreNew = 0;
             health.setLevel(health.getLevel() + 1);
+            handler.addObject(new Enemy2(scoreNew, scoreNew, ID.Enemy, ss));
         }
     
     }
     
 }
 
-//could have a score system or a timer ??
-//once that score reaches a certain value. 
-
-
-/* 
-Updates:
-- Added a new class health that contains a health bar - this 
-decreases by a factor everytime a enemy hits a player. The health class
-also contains a score that goes up through incrementing score.
-
-Once 
-- Added a new class called Spawn.  When 
-the score passes 500 the level increases by 1. 
-
-*/
