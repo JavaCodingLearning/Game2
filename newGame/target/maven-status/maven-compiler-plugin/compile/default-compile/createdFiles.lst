@@ -8,5 +8,6 @@ main/Health.class
 main/Game.class
 main/SpriteSheet.class
 main/ID.class
+main/Spawn.class
 main/Action.class
 main/Player.class
