@@ -1,18 +1,12 @@
-
 package main;
-
 import java.util.Random;
 
-/**
- *
- * @author coding_java
- */
+/**@author coding_java */
 public class Spawn {
     private Handler handler;
     private Health health;
     private final SpriteSheet ss;
     private Random r = new Random();
-    
     private int scoreNew = 0;
     
     public  Spawn(Handler handler, Health health, SpriteSheet ss){
@@ -32,11 +26,8 @@ public class Spawn {
         }else if(health.getLevel() == 3){
             handler.addObject(new Enemy2(r.nextInt(Game.W), r.nextInt(Game.H), ID.Enemy2, ss));
             handler.addObject(new Enemy(r.nextInt(Game.W), r.nextInt(Game.H), ID.Enemy, ss));
-
         }
         }
-    
     }
-    
 }
 

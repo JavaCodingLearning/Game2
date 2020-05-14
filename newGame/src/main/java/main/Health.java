@@ -1,10 +1,6 @@
-
 package main;
-
 import java.awt.Color;
 import java.awt.Graphics;
-
-
 /**
  * @author coding_java
  */
@@ -32,9 +28,8 @@ public class Health {
         g.setColor(Color.white);
         g.drawRect(10, 10, 200, 25);
         
-        g.drawString("Score" + score, 15, 64);
-        g.drawString("Level" + level, 15, 80);
-
+        g.drawString("Score " + score, 15, 64);
+        g.drawString("Level " + level, 15, 80);
         
     }
     

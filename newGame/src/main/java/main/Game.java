@@ -21,6 +21,17 @@ public class Game extends Canvas implements Runnable{
     private final Random r;
     private Health health;
     private Spawn spawn;
+    private Menu menu;
+    //include enumeration for game
+    public enum STATE{
+        Menu,
+        Game
+    };
+    //can change game state
+    public STATE gameState = STATE.Menu;
+    
+    
+    
     //create an instance of our handler 
     private final Handler handler;
     private BufferedImage sprite_sheet = null;
@@ -37,13 +48,20 @@ public class Game extends Canvas implements Runnable{
         Window window = new Window(W, H, "new game", this);
         health = new Health();
         spawn = new Spawn(handler, health, ss);
+        menu = new Menu(this, handler, ss);
+        this.addMouseListener(menu);
         r = new Random();
-        //new player specs
-        
-        //put as many objects in game as you like 
-        handler.addObject(new Player(100, 400, ID.Player, ss, handler)); //sets the coords 
+        if(gameState == STATE.Game)
+        {
+            handler.addObject(new Player(100, 400, ID.Player, ss, handler)); //sets the coords 
         for (int i = 0; i < 3; i++)
         handler.addObject(new Enemy(r.nextInt(W), r.nextInt(H), ID.Enemy, ss)); //sets the coords 
+        }
+        //new player specs
+        
+        
+        //put as many objects in game as you like 
+        
         //handler.addObject(new Player(100, 200, ID.Player2)); //sets the coords 
         //for (int i = 0; i < 2; i++)
         //handler.addObject(new Enemy2(r.nextInt(W), r.nextInt(H), ID.Enemy2, ss)); //sets the coords 
@@ -104,8 +122,12 @@ public class Game extends Canvas implements Runnable{
 
     private void tick() {
         handler.tick();
+        if(gameState == STATE.Game){
         health.tick();
         spawn.tick();
+    }else if(gameState == STATE.Menu){
+        menu.tick();
+    }
     }
    
     private void render() {
@@ -120,9 +142,12 @@ public class Game extends Canvas implements Runnable{
         g.setColor(Color.lightGray);
         g.fillRect(0, 0, W, H);
         
+        if(gameState == STATE.Game){
         handler.render(g);
         health.render(g);
-        
+        }else if(gameState == STATE.Menu){
+        menu.render(g);
+        }
         g.dispose();
         b.show();
     }
