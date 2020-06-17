@@ -95,16 +95,19 @@ public class Menu extends MouseAdapter{
         g.drawString("Quit", 310, 400);        
     }else if(game.gameState == STATE.Options){
         Font fnt = new Font("one font", 3, 50);
-        Font fnt2 = new Font("font 2", 7, 40);
+        Font fnt2 = new Font("one font", 1, 30);        
+        Font fnt3 = new Font("font 2", 7, 40);
 
         g.setFont(fnt);
         g.setColor(Color.BLACK);
         g.drawString("Options", 200, 70);
-  
         g.setFont(fnt2);
+        g.drawString("One player game by Molly", 100, 190);
+        g.drawString("Use arrow keys to move player", 100, 240);
+        g.setFont(fnt3);
         g.setColor(Color.BLACK);      
         g.drawRect(200, 350, 300, 64);       
-        g.drawString("Back", 310, 400);        
+        g.drawString("Back", 300, 400);        
     }
     }
     
