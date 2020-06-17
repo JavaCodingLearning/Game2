@@ -26,6 +26,7 @@ public class Game extends Canvas implements Runnable{
     //include enumeration for game
     public enum STATE{
         Menu,
+        Options,
         Game
     };
     //can change game state
@@ -126,7 +127,7 @@ public class Game extends Canvas implements Runnable{
         if(gameState == STATE.Game){
         health.tick();
         spawn.tick();
-    }else if(gameState == STATE.Menu){
+    }else if(gameState == STATE.Menu || gameState == STATE.Options){
         menu.tick();
     }
     }
@@ -146,7 +147,7 @@ public class Game extends Canvas implements Runnable{
         if(gameState == STATE.Game){
         handler.render(g);
         health.render(g);
-        }else if(gameState == STATE.Menu){
+        }else if(gameState == STATE.Menu || gameState == STATE.Options){
         menu.render(g);
         }
         g.dispose();

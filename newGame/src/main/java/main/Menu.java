@@ -35,11 +35,22 @@ public class Menu extends MouseAdapter{
                         for (int i = 0; i < 3; i++)
                         handler.addObject(new Enemy(r.nextInt(Game.W), r.nextInt(Game.H), ID.Enemy, ss)); //sets the coords 
         }
-        //help button
+
+        //options
+        if(mouseOver(mx, my, 200, 250, 200, 64)){
+            game.gameState = STATE.Options;}
+        //back button for help
+        if(game.gameState == STATE.Options){
+            if(mouseOver(mx, my, 200, 350, 200, 64)){
+                game.gameState = STATE.Menu;
+                return;
+            }}
+                //help button
         if(mouseOver(mx, my, 210, 350, 200, 64)){
             System.exit(0);
         }
         
+
     }
     public void mouseReleased(MouseEvent e){
         
@@ -61,6 +72,7 @@ public class Menu extends MouseAdapter{
     }
     
     public void render(Graphics g){
+        if(game.gameState == STATE.Menu){
         //cool menu
         Font fnt = new Font("one font", 3, 50);
         Font fnt2 = new Font("font 2", 7, 40);
@@ -81,6 +93,19 @@ public class Menu extends MouseAdapter{
         g.setColor(Color.BLACK);
         g.drawRect(200, 350, 300, 64);       
         g.drawString("Quit", 310, 400);        
+    }else if(game.gameState == STATE.Options){
+        Font fnt = new Font("one font", 3, 50);
+        Font fnt2 = new Font("font 2", 7, 40);
+
+        g.setFont(fnt);
+        g.setColor(Color.BLACK);
+        g.drawString("Options", 200, 70);
+  
+        g.setFont(fnt2);
+        g.setColor(Color.BLACK);      
+        g.drawRect(200, 350, 300, 64);       
+        g.drawString("Back", 310, 400);        
+    }
     }
     
 }
