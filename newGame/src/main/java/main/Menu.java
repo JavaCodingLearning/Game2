@@ -28,12 +28,16 @@ public class Menu extends MouseAdapter{
         int mx = e.getX();
         int my = e.getY();
         
-        
+        //play button
         if(mouseOver(mx, my, 200, 150, 300, 64)){
             game.gameState = STATE.Game;
                        handler.addObject(new Player(100, 400, ID.Player, ss, handler)); //sets the coords 
                         for (int i = 0; i < 3; i++)
                         handler.addObject(new Enemy(r.nextInt(Game.W), r.nextInt(Game.H), ID.Enemy, ss)); //sets the coords 
+        }
+        //help button
+        if(mouseOver(mx, my, 210, 350, 200, 64)){
+            System.exit(0);
         }
         
     }

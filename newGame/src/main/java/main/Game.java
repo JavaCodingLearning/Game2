@@ -6,7 +6,8 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
- /** @author coding_java **/
+ /** @author 
+  **/
 
 public class Game extends Canvas implements Runnable{
 
