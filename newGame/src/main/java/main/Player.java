@@ -36,6 +36,7 @@ public class Player extends GameObject{
           collision();
     }
     
+    
     private void collision(){
         for(int i =0; i < handler.object.size(); i++){
             GameObject tempObject = handler.object.get(i);
@@ -45,6 +46,13 @@ public class Player extends GameObject{
                     Health.health -= 2;
                 }
             }
+                if(tempObject.getId() == ID.Block){
+                if(getBounds().intersects(tempObject.getBounds())){
+                    x += velocityX * -1;
+                    y += velocityY * -1;
+                }
+                }        
+            
         }
     }
 

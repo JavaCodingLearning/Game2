@@ -35,6 +35,7 @@ public class Enemy extends GameObject{
         if(x <= 0 || x >= 2000 - 16) velocityX *= -1;
            
     }
+    
     public void render(Graphics g){
        g.drawImage(enemy_image, x, y, null);
     }
