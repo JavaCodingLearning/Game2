@@ -30,9 +30,9 @@ public class Player extends GameObject{
         x += velocityX;
         y += velocityY;
           if(x < 0) x = 0;
-          if(x > Game.W - 39) x = Game.W - 39;
+          if(x > 2000 - 39) x = 2000 - 39;
           if(y < 0) y = 0;
-          if(y > Game.H - 60) y = Game.H - 60;
+          if(y > 1150 - 60) y = 1150 - 60;
           collision();
     }
     

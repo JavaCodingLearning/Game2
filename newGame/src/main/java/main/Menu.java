@@ -29,7 +29,7 @@ public class Menu extends MouseAdapter{
         int my = e.getY();
         
         //play button
-        if(mouseOver(mx, my, 200, 150, 300, 64)){
+        if(mouseOver(mx, my, 200, 150, 500, 64)){
             game.gameState = STATE.Game;
                        handler.addObject(new Player(100, 400, ID.Player, ss, handler)); //sets the coords 
                         for (int i = 0; i < 3; i++)
@@ -37,16 +37,16 @@ public class Menu extends MouseAdapter{
         }
 
         //options
-        if(mouseOver(mx, my, 200, 250, 200, 64)){
+        if(mouseOver(mx, my, 200, 250, 400, 64)){
             game.gameState = STATE.Options;}
         //back button for help
         if(game.gameState == STATE.Options){
-            if(mouseOver(mx, my, 200, 350, 200, 64)){
+            if(mouseOver(mx, my, 200, 350, 400, 64)){
                 game.gameState = STATE.Menu;
                 return;
             }}
                 //help button
-        if(mouseOver(mx, my, 210, 350, 200, 64)){
+        if(mouseOver(mx, my, 210, 350, 400, 64)){
             System.exit(0);
         }
         
@@ -56,7 +56,7 @@ public class Menu extends MouseAdapter{
         
     }
     public static void main(String[] args) {
-        
+       
     }
     
     //check if mouse is over target 
@@ -78,21 +78,23 @@ public class Menu extends MouseAdapter{
         Font fnt2 = new Font("font 2", 7, 40);
         g.setFont(fnt);
         g.setColor(Color.BLACK);
-        g.drawString("Menu", 270, 70);
+        g.drawString("Menu", 470, 70);
         
         //set something up
         g.setFont(fnt2);
         g.setColor(Color.BLACK);
-        g.drawRect(200, 150, 300, 64);
-        g.drawString("Play", 310, 200);
+        g.drawRect(300, 150, 500, 64);
+        g.drawString("Play", 510, 200);
         g.setColor(Color.BLACK);
         
-        g.drawRect(200, 250, 300, 64);
-        g.drawString("Options", 270, 300);  
+        g.drawRect(300, 250, 500, 64);
+        g.drawString("Options", 470, 300);  
         
         g.setColor(Color.BLACK);
-        g.drawRect(200, 350, 300, 64);       
-        g.drawString("Quit", 310, 400);        
+        g.drawRect(300, 350, 500, 64);       
+        g.drawString("Quit", 510, 400);  
+        
+        
     }else if(game.gameState == STATE.Options){
         Font fnt = new Font("one font", 3, 50);
         Font fnt2 = new Font("one font", 1, 30);        
@@ -100,14 +102,14 @@ public class Menu extends MouseAdapter{
 
         g.setFont(fnt);
         g.setColor(Color.BLACK);
-        g.drawString("Options", 200, 70);
+        g.drawString("Options", 400, 70);
         g.setFont(fnt2);
-        g.drawString("One player game by Molly", 100, 190);
-        g.drawString("Use arrow keys to move player", 100, 240);
+        g.drawString("One player game by Molly", 300, 190);
+        g.drawString("Use arrow keys to move player", 300, 240);
         g.setFont(fnt3);
         g.setColor(Color.BLACK);      
-        g.drawRect(200, 350, 300, 64);       
-        g.drawString("Back", 300, 400);        
+        g.drawRect(300, 350, 500, 64);       
+        g.drawString("Back", 500, 400);        
     }
     }
     

@@ -26,8 +26,8 @@ public class Enemy2 extends GameObject{
         y += velocityY;
         //have to multiply velocity y by negative to 
         //bring it down. 
-        if(y <= 0 || y >= Game.H - 32) velocityY *= -1;
-        if(x <= 0 || x >= Game.W - 16) velocityX *= -1;
+        if(y <= 0 || y >= 1150 - 32) velocityY *= -1;
+        if(x <= 0 || x >= 2000 - 16) velocityX *= -1;
            
     }
     public void render(Graphics g){

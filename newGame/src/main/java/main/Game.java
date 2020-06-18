@@ -2,6 +2,7 @@ package main;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.Random;
@@ -15,7 +16,7 @@ public class Game extends Canvas implements Runnable{
         Game game = new Game();
         
     }
-    public static final int W = 650, H = W / 13 * 10;
+    public static final int W = 1000, H = 563;
     private Thread thread;
     private boolean running = false;
     private final SpriteSheet ss;
@@ -37,14 +38,21 @@ public class Game extends Canvas implements Runnable{
     //create an instance of our handler 
     private final Handler handler;
     private BufferedImage sprite_sheet = null;
+    private Camera camera; 
     
+    private BufferedImage level = null;
     public Game(){
         //need to initialize the handler first 
         handler = new Handler();
+        camera = new Camera(0, 0);
         this.addKeyListener(new Action(handler));
         
         BufferedImageLoader loader = new BufferedImageLoader();
         sprite_sheet = loader.loadImage("/spritesheet.png"); 
+        
+        level = loader.loadImage("/wizard_level.png");
+        
+        loadLevel(level);
         
         ss = new SpriteSheet(sprite_sheet);
         Window window = new Window(W, H, "new game", this);
@@ -59,9 +67,7 @@ public class Game extends Canvas implements Runnable{
         for (int i = 0; i < 3; i++)
         handler.addObject(new Enemy(r.nextInt(W), r.nextInt(H), ID.Enemy, ss)); //sets the coords 
         }
-        //new player specs
-        
-        
+        //new player specs   
         //put as many objects in game as you like 
         
         //handler.addObject(new Player(100, 200, ID.Player2)); //sets the coords 
@@ -123,6 +129,13 @@ public class Game extends Canvas implements Runnable{
     }  
 
     private void tick() {
+        
+         for(int i = 0; i < handler.object.size(); i++){
+            if(handler.object.get(i).getId() == ID.Player){
+                camera.tick(handler.object.get(i));
+            }
+        }       
+        
         handler.tick();
         if(gameState == STATE.Game){
         health.tick();
@@ -140,9 +153,12 @@ public class Game extends Canvas implements Runnable{
         }
         
         Graphics g = b.getDrawGraphics();
+        Graphics2D g2d = (Graphics2D) g;
         
         g.setColor(Color.lightGray);
         g.fillRect(0, 0, W, H);
+
+        g2d.translate(-camera.getX(), -camera.getY());
         
         if(gameState == STATE.Game){
         handler.render(g);
@@ -150,8 +166,30 @@ public class Game extends Canvas implements Runnable{
         }else if(gameState == STATE.Menu || gameState == STATE.Options){
         menu.render(g);
         }
+        
+        g2d.translate(camera.getX(), camera.getY());
+        
         g.dispose();
         b.show();
+    }
+    
+    
+        private void loadLevel(BufferedImage image){
+        int w = image.getWidth();
+        int h = image.getHeight();
+        
+        for(int xx = 0; xx < w; xx++){
+            for(int yy = 0; yy < h; yy++){
+                int pixel = image.getRGB(xx, yy);
+                int red = (pixel >> 16) & 0xff;
+                int green = (pixel >> 8) & 0xff;
+                int blue = (pixel) & 0xff;
+                if(green == 255)
+                    handler.addObject(new Block(xx*32, yy*32, ID.Block, ss));
+                if(red == 255)
+                    handler.addObject(new Player(xx*32, yy*32, ID.Player, ss, handler));
+                }
+            }
     }
     
     public static int clamp(int var, int min, int max){
