@@ -1,8 +1,10 @@
 main/Game$STATE.class
 main/Window.class
 main/Menu.class
+main/Camera.class
 main/BufferedImageLoader.class
 main/GameObject.class
+main/Block.class
 main/Handler.class
 main/Enemy2.class
 main/Enemy.class
