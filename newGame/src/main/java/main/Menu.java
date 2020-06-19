@@ -15,6 +15,7 @@ import static main.Game.W;
  * @author coding_java
  */
 public class Menu extends MouseAdapter{
+    
     private Game game;
     private Handler handler;
     private final SpriteSheet ss;
@@ -27,8 +28,9 @@ public class Menu extends MouseAdapter{
     public void mousePressed(MouseEvent e){
         int mx = e.getX();
         int my = e.getY();
-        
+   
         //play button
+        if(game.gameState == STATE.Menu){
         if(mouseOver(mx, my, 200, 150, 500, 64)){
             game.gameState = STATE.Game;
                        handler.addObject(new Player(100, 400, ID.Player, ss, handler)); //sets the coords 
@@ -50,7 +52,8 @@ public class Menu extends MouseAdapter{
             System.exit(0);
         }
         
-
+        }
+   
     }
     public void mouseReleased(MouseEvent e){
         

@@ -3,6 +3,7 @@ main/Window.class
 main/Menu.class
 main/Camera.class
 main/BufferedImageLoader.class
+main/Bullet.class
 main/GameObject.class
 main/Block.class
 main/Handler.class

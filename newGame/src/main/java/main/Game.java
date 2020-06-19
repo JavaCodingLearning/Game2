@@ -45,8 +45,8 @@ public class Game extends Canvas implements Runnable{
         //need to initialize the handler first 
         handler = new Handler();
         camera = new Camera(0, 0);
-        this.addKeyListener(new Action(handler));
         
+        this.addKeyListener(new Action(handler, camera));
         BufferedImageLoader loader = new BufferedImageLoader();
         sprite_sheet = loader.loadImage("/spritesheet.png"); 
         
@@ -62,7 +62,7 @@ public class Game extends Canvas implements Runnable{
         this.addMouseListener(menu);
         r = new Random();
         if(gameState == STATE.Game)
-        {
+        {                
             handler.addObject(new Player(100, 400, ID.Player, ss, handler)); //sets the coords 
         for (int i = 0; i < 3; i++)
         handler.addObject(new Enemy(r.nextInt(W), r.nextInt(H), ID.Enemy, ss)); //sets the coords 
